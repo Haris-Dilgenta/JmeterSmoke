@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>Jmeter</groupId>
+    <artifactId>SimpleGet</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+
+    </properties>
+    <profiles>
+        <profile>
+            <!--
+               Use to run jmeter test scripts against xit environment. Example usage: mvn clean process-test-resources -Pjmeter-google jmeter:jmeter
+              -->
+            <id>jmeter-google</id>
+            <properties>
+                <site>www.google.co.uk</site>
+                <number-of-threads>1</number-of-threads>
+            </properties>
+            <build>
+                <testResources>
+                    <testResource>
+                        <directory>src/test/java</directory>
+                        <filtering>true</filtering>
+                    </testResource>
+                    <testResource>
+                        <directory>src/test/resources</directory>
+                    </testResource>
+                </testResources>
+            </build>
+        </profile>
+
+        <!-- TODO - move this to a paramter -->
+
+        <profile>
+            <!--
+               Use to run jmeter test scripts against xit environment. Example usage: mvn clean process-test-resources -Pjmeter-amazon jmeter:jmeter
+              -->
+            <id>jmeter-amazon</id>
+            <properties>
+                <site>www.amazon.co.uk</site>
+                <number-of-threads>1</number-of-threads>
+            </properties>
+            <build>
+                <testResources>
+                    <testResource>
+                        <directory>src/test/java</directory>
+                        <filtering>true</filtering>
+                    </testResource>
+                    <testResource>
+                        <directory>src/test/resources</directory>
+                    </testResource>
+                </testResources>
+            </build>
+        </profile>
+
+        <profile>
+            <!--
+               Use to run jmeter test scripts against xit environment. Example usage: mvn clean process-test-resources -Pjmeter-bbc jmeter:jmeter
+              -->
+            <id>jmeter-bbc</id>
+            <properties>
+                <site>www.bbc.co.uk</site>
+                <number-of-threads>1</number-of-threads>
+            </properties>
+            <build>
+                <testResources>
+                    <testResource>
+                        <directory>src/test/java</directory>
+                        <filtering>true</filtering>
+                    </testResource>
+                    <testResource>
+                        <directory>src/test/resources</directory>
+                    </testResource>
+                </testResources>
+            </build>
+        </profile>
+
+    </profiles>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.lazerycode.jmeter</groupId>
+                <artifactId>jmeter-maven-plugin</artifactId>
+                <version>1.10.0</version>
+                <configuration>
+                    <testResultsTimestamp>false</testResultsTimestamp>
+                    <testFilesDirectory>target/test-classes</testFilesDirectory>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
